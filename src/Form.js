@@ -24,6 +24,11 @@ class Form extends Component {
         })
     }
 
+    radioHandler(radio) {
+        console.log('radio');
+        console.log(radio);
+    }
+
     saveUsers(ev) {
         let currentUser = this.state.allUsers;
         currentUser.push(this.state.username);
@@ -33,11 +38,6 @@ class Form extends Component {
         })
         //console.log(this.state.allUsers);
         ev.preventDefault();
-    }
-
-    radioHandler(radio) {
-        console.log('radio');
-        console.log(radio);
     }
 
     render(){
@@ -57,12 +57,12 @@ class Form extends Component {
                     </label>
                     <br />
                     <label>
-                        Java :
+                        JAVA :
                         <input type="radio" name="devcategory" value="java" checked={this.state.radioGroup['javaradio']} onChange={this.radioHandler}></input>
                     </label>
                     <br />
                     <label>
-                        Ruby :
+                        RUBY :
                         <input type="radio" name="devcategory" value="ruby" checked={this.state.radioGroup['rubyradio']} onChange={this.radioHandler}></input>
                     </label>
                 </div>
