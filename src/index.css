@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+.user_name,
+.user_location {
+  color: blue;
+  font-size: 15px;
+}
+
+.user_name_update, .user_location_update {
+  color: green;
+  font-weight: bold;
+}
+
+#social_links {
+  width: 50%;
+  float: left;
+}
+
+#form_section {
+  width: 50%;
+  float: right;
+}
