@@ -54,7 +54,6 @@ class Form extends Component {
     }
 
     selectHandler(sel) {
-        //console.log(sel.target.value);
         this.setState({
             selectedValue : sel.target.value
         })
