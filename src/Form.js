@@ -39,13 +39,13 @@ class Form extends Component {
             radioButton[key] = false;
         }
         radioButton[radio.target.value] = radio.target.checked;   
-         this.setState({
+        this.setState({
              radioGroup: radioButton
-         })
+        })
     }
 
     checkboxHandler(check) {
-        console.log(check.target.value);
+        //console.log(check.target.value);
         let checkboxCont = this.state.checkboxGroup;
         checkboxCont[check.target.value] = check.target.checked;
         this.setState({
@@ -68,63 +68,91 @@ class Form extends Component {
                 username : ""
             })
         }
-        //console.log(this.state.allUsers);
+        console.log(this.state.allUsers);
         ev.preventDefault();
+    }
+
+    submitForm(event){
+        event.preventDefault();
+        let radioChecks = this.state.radioGroup;
+        let techCheckboxs = this.state.checkboxGroup;
+        let selected_dev_cat; let selected_tech_cat = [];
+        for (var key in radioChecks) {
+            if(radioChecks[key] === true){
+                selected_dev_cat = key;
+            }
+        }
+        for (var k in techCheckboxs) {
+            if(techCheckboxs[k] === true){
+                selected_tech_cat.push(k);
+            }
+        }
+        const data = {
+            username : this.username.value,
+            devcategory : selected_dev_cat,
+            techcategory : selected_tech_cat,
+            langcategory : this.langcat.value
+        }
+        console.log(data);
     }
 
     render(){
         return(
-            <form>
+            <form onSubmit={(e) => this.submitForm(e)}>
                 <label>
                     User Name : 
-                    <input type="text" name="username" value={this.state.username} onChange={this.updateUserName.bind(this)}/>
+                    <input ref={(input) => this.username = input} type="text" name="username" value={this.state.username} onChange={this.updateUserName.bind(this)}/>
+                    <button type="submit" onClick={this.saveUsers}>Save User</button>
                 </label>
                 {/* <p>UserName is :{this.state.username}</p> */}
                 { /* RADIO SECTION */ }
                 <div className={this.state.radioGroup['radioGroupClass']}>
-                    Developers Categories : 
-                    <br/>
+                    <b><i>Developers Categories :</i></b> 
+                    <br/><br/>
                     <label>
                         PHP :  
-                        <input type="radio" name="devcategory" value="phpradio" checked={this.state.radioGroup['phpradio']} onChange={this.radioHandler}></input>
+                        <input ref={(input) => this.devcat = input} type="radio" name="devcategory" value="phpradio" checked={this.state.radioGroup['phpradio']} onChange={this.radioHandler}></input>
                     </label>
                     <br />
                     <label>
                         JAVA :
-                        <input type="radio" name="devcategory" value="javaradio" checked={this.state.radioGroup['javaradio']} onChange={this.radioHandler}></input>
+                        <input ref={(input) => this.devcat = input} type="radio" name="devcategory" value="javaradio" checked={this.state.radioGroup['javaradio']} onChange={this.radioHandler}></input>
                     </label>
                     <br />
                     <label>
                         RUBY :
-                        <input type="radio" name="devcategory" value="rubyradio" checked={this.state.radioGroup['rubyradio']} onChange={this.radioHandler} />
+                        <input ref={(input) => this.devcat = input} type="radio" name="devcategory" value="rubyradio" checked={this.state.radioGroup['rubyradio']} onChange={this.radioHandler} />
                     </label>
                 </div>
+                <br/>
                 {/* CHECKBOX SECTION */}
                 <div className={this.state.radioGroup['checkboxGroupClass']}>
-                    Technology Categories : 
-                    <br/>
+                    <b><i>Technology Categories : </i></b>
+                    <br/><br/>
                     <label>
                         REACT :  
-                        <input type="checkbox" name="tech" value="reacttech" checked={this.state.checkboxGroup['reacttech']} onChange={this.checkboxHandler}></input>
+                        <input ref={(input) => this.techcat = input} type="checkbox" name="tech" value="reacttech" checked={this.state.checkboxGroup['reacttech']} onChange={this.checkboxHandler}></input>
                     </label>
                     <br />
                     <label>
                         NODE :
-                        <input type="checkbox" name="tech" value="nodetech" checked={this.state.checkboxGroup['nodetech']} onChange={this.checkboxHandler}></input>
+                        <input ref={(input) => this.techcat = input} type="checkbox" name="tech" value="nodetech" checked={this.state.checkboxGroup['nodetech']} onChange={this.checkboxHandler}></input>
                     </label>
                     <br />
                     <label>
                         ANGULAR :
-                        <input type="checkbox" name="tech" value="angulartech" checked={this.state.checkboxGroup['angulartech']} onChange={this.checkboxHandler} />
+                        <input ref={(input) => this.techcat = input} type="checkbox" name="tech" value="angulartech" checked={this.state.checkboxGroup['angulartech']} onChange={this.checkboxHandler} />
                     </label>
                 </div>
+                <br/>
                 {/* SELECT FIELD */}
-                <select value={this.state.selectedValue} onChange={this.selectHandler}> 
+                <select ref={(input) => this.langcat = input} value={this.state.selectedValue} onChange={this.selectHandler}> 
                     <option value="ruby">Ruby</option>
                     <option value="python">Python</option>
                     <option value="express">Express</option>
                 </select>
-                <button onClick={this.saveUsers}>Save</button>
+                <br/><br/>
+                <button type="submit">Submit</button>
             </form>
         )
     }
