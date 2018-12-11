@@ -1,6 +1,6 @@
 h1
 {
-    color: yellow;
+    color: rgb(228, 108, 10);
 }
 h1:hover
 {
@@ -29,6 +29,12 @@ h1:hover
 
 .App-intro {
   font-size: large;
+}
+
+.about_to_know, .name, .google-link{
+  padding: 10px;
+  margin: auto;
+  background: antiquewhite;
 }
 
 @keyframes App-logo-spin {
