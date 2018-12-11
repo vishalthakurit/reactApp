@@ -1,4 +1,6 @@
-export function changeState()
+import actionType from '../constant/constant';
+
+export function changeState(userinput)
 {
     // Wrong approach giving error
 
@@ -8,8 +10,8 @@ export function changeState()
     // }
     
     return {
-		type: 'CHANGESTATENOW',
-		payload: 'Rajput Boy !!'
+		type: actionType.CHANGESTATENOW,
+		payload: userinput
 	};
 
 }

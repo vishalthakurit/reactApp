@@ -3,6 +3,19 @@ import {connect} from 'react-redux';
 import {changeState} from './store/action/action';
 
 class About extends Component {
+    
+    constructor(props){
+        super(props)
+        this.state= {
+            lastName : ''
+        }
+    }
+
+    getUserInput(ev){
+        this.setState({
+            lastName : ev.target.value
+        })
+    }
   
     backToHome(){
         this.props.history.push('/');
@@ -10,7 +23,8 @@ class About extends Component {
 
     updateState(){
         //changeState();        //not right way to call/dispatch the action
-        this.props.changeStateToReducer();
+        var last_name = this.state.lastName;
+        this.props.changeStateToReducer(last_name);
     }
 
   render() {
@@ -19,6 +33,7 @@ class About extends Component {
         <div className="About-us">
             <h1>Hello About Us page!! {this.props.name}</h1>
             <button className="about_us" onClick={this.backToHome.bind(this)}>Back To Home</button>
+            <input type="text" value={this.state.lastName} onChange={this.getUserInput.bind(this)} />
             <button className="change_state_btn" onClick={this.updateState.bind(this)}>Change State</button>
             <p>Company Name is : {this.props.match.params.company}</p>
         </div>
@@ -34,8 +49,8 @@ function mapStatesToProps(state){
 
 function mapDispatchToProps(dispatch){
     return({
-        changeStateToReducer: () => {
-            dispatch(changeState());
+        changeStateToReducer: (last_name) => {
+            dispatch(changeState(last_name));
         }
     })
 }
