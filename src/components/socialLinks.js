@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './socialLinks.css';
+import '../css/socialLinks.css';
 //import ReactDOM from 'react-dom';
 
 

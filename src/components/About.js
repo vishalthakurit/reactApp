@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {changeState} from './store/action/action';
+import {changeState} from '../store/action/action';
 
 class About extends Component {
     
