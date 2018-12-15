@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 //import App from './App';
 // import CustomComponent from './Header';
-import CustomLinks from './socialLinks';
-import Methods from './customMethods';
-import Clock from './Clock';
-import Logger from './Logger';
-import Form from "./Form";
-import CustomRoutes from './Routes';
+import CustomLinks from './components/socialLinks';
+import Methods from './components/customMethods';
+import Clock from './components/Clock';
+import Logger from './components/Logger';
+import Form from "./components/Form";
+import CustomRoutes from './components/Routes';
 import { Provider } from 'react-redux';
 import store from './store';
 
