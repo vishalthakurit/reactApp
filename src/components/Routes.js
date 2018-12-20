@@ -11,6 +11,8 @@ import Users from './Users';
 import CustomComponent from './Header';
 import Contactus from './Contactus';
 import browserHistory from './History';
+import ProfilePhotos from './Profile';
+import Movies from './Movies';
 
 // **** 1st method End ****
 
@@ -39,6 +41,12 @@ const CustomRoutes = () => (
                     <li>
                         <Link to="/users/react-developer">Users</Link>
                     </li>
+                    <li>
+                        <Link to="/ProfilePhotos/">Profile</Link>
+                    </li>
+                    <li>
+                        <Link to="/Movies/">Movies</Link>
+                    </li>
                 </ul>
             </nav>
 
@@ -46,6 +54,8 @@ const CustomRoutes = () => (
             <Route path="/about/:company" component={About} />
             <Route path="/users/:profile" component={Users} />
             <Route path="/contact/:username" component={Contactus} />
+            <Route path="/ProfilePhotos/" component={ProfilePhotos} />
+            <Route path="/Movies/" component={Movies} />
         </div>
     </Router>
 
