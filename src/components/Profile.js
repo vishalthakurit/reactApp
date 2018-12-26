@@ -15,7 +15,7 @@ class FetchPhotos extends Component
       $.ajax({
           url: this.props.url,
           success: (response) => {
-            console.log(response);
+            // console.log(response);
               this.setState({
                   content : response
               })

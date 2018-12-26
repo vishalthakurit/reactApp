@@ -19,15 +19,7 @@ import store from './store';
 ReactDOM.render(
     <Provider store={store}>
       <CustomRoutes />
-    </Provider>,
-    document.getElementById('root')
-  )
-//ReactDOM.render(<CustomComponent />, document.getElementById('root'));
-
-// ************** 1st Method Start *******************
-
-ReactDOM.render(
-        <div>
+      <div id="social_links">
             <CustomLinks link="https://www.facebook.com/" title="Go To Facebook" value="Facebook"  target = '_blank' />
             <CustomLinks link="https://www.youtube.com/" title="Go To You-Tube" value="YouTube"  target = '_blank' />
             <CustomLinks link="https://www.linkedin.com/" title="Go To LinkedIn" value="LinkedIn"  target = '_blank' />
@@ -36,7 +28,27 @@ ReactDOM.render(
             <Clock />
             <Logger />
         </div>
-        , document.getElementById('social_links'));
+        <div id="form_section">
+          <Form />
+        </div>
+    </Provider>,
+    document.getElementById('root')
+  )
+//ReactDOM.render(<CustomComponent />, document.getElementById('root'));
+
+// ************** 1st Method Start *******************
+
+// ReactDOM.render(
+//         <div id="social_links">
+//             <CustomLinks link="https://www.facebook.com/" title="Go To Facebook" value="Facebook"  target = '_blank' />
+//             <CustomLinks link="https://www.youtube.com/" title="Go To You-Tube" value="YouTube"  target = '_blank' />
+//             <CustomLinks link="https://www.linkedin.com/" title="Go To LinkedIn" value="LinkedIn"  target = '_blank' />
+//             <CustomLinks link="https://www.twitter.com/" title="Go To Twitter" value="Twitter"  target = '_blank' />
+//             <Methods />
+//             <Clock />
+//             <Logger />
+//         </div>
+//         , document.getElementById('social_links'));
 
 // ************** 1st Method End *******************
 // ************** 2nd Method Start *****************
@@ -50,6 +62,6 @@ ReactDOM.render(
 
 // ************** 2nd Method End *****************
 
-ReactDOM.render(<Form />, document.getElementById('form_section'));
+// ReactDOM.render(<Form />, document.getElementById('form_section'));
 
 //registerServiceWorker();
