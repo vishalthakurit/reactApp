@@ -10,8 +10,8 @@ export function changeState(userinput)
     // }
     
     return {
-		type: actionType.CHANGESTATENOW,
-		payload: userinput
-	};
+      type: actionType.CHANGESTATENOW,
+      payload: userinput
+	  };
 
 }
