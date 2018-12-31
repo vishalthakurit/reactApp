@@ -2,7 +2,6 @@ import React from 'react';
 import {
     Router, Route, Link
 } from 'react-router-dom';
-import SearchField from './SearchBar';
 // import createBrowserHistory from 'history/createBrowserHistory';
 
 // **** 1st method Start ****
@@ -48,9 +47,6 @@ const CustomRoutes = () => (
                     <li>
                         <Link to="/Movies/">Movies</Link>
                     </li>
-                    <div className="search_bar">
-                        <SearchField class="search_movies" placeholder="seach movies..."/>
-                    </div>
                 </ul>
             </nav>
 
