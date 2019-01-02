@@ -7,6 +7,7 @@ class FetchPhotos extends Component
 {
     constructor(props){
         super(props)
+        document.title = "Profile";        
         this.state = {
             content : []
         }
