@@ -1,10 +1,17 @@
+a:hover {
+    color: #333 !important;
+    text-decoration: none !important;
+}
+
 .movies_list div.movies_section{
     width: 50%;
     display: inline-flex;
 }
 
 .movies_list img.movie_image{
-    height: 500px;
+    height: 300px;
+    width: 100%;
+    max-width: 220px;
 }
 
 .movies{
@@ -24,4 +31,28 @@
 .movie_overview{
     color: #84807F;
     text-align: justify;
+}
+
+a.movie_hover {
+    text-decoration: none;
+    color: #333;
+}
+
+.movie_popup {
+    visibility: hidden;
+}
+
+.movie_popup_show {
+    visibility: visible;
+    height: 350px !important;
+    width: 900px;
+    position: fixed;
+    z-index: 1000000;
+    top: 20%;
+    padding: 25px;
+    overflow-y: scroll;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 0%);
+    background: antiquewhite;
 }

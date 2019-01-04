@@ -14,7 +14,7 @@ class SearchField extends Component
     render() {
         return(
             <div className="parent_search_box">
-                <input type="text" className={`search_field ${this.props.class}`} placeholder={this.props.placeholder} value={this.state.searchInputValue} onChange={ev => this.setState({searchInputValue : ev.target.value})} />
+                <input type="text" className={`form-control mr-sm-2 search_field ${this.props.class}`} placeholder={this.props.placeholder} value={this.state.searchInputValue} onChange={ev => this.setState({searchInputValue : ev.target.value})} />
                 <span className="search_icon" onClick={() => this.props.onSubmit(this.state.searchInputValue)}>
                     <IosSearch fontSize="25px" color={this.props.iconColor} />
                 </span>

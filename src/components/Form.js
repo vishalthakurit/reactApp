@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import '../css/Form.css';
 
 class Form extends Component {
 
@@ -99,10 +100,10 @@ class Form extends Component {
     render(){
         return(
             <form onSubmit={(e) => this.submitForm(e)}>
-                <label>
+                <label className="username_input_label">
                     User Name : 
-                    <input ref={(input) => this.username = input} type="text" name="username" value={this.state.username} onChange={this.updateUserName.bind(this)}/>
-                    <button type="submit" onClick={this.saveUsers}>Save User</button>
+                    <input ref={(input) => this.username = input} type="text" className="form-control" name="username" value={this.state.username} onChange={this.updateUserName.bind(this)}/>
+                    <button className="save_username btn btn-primary" type="submit" onClick={this.saveUsers}>Save User</button>
                 </label>
                 {/* <p>UserName is :{this.state.username}</p> */}
                 { /* RADIO SECTION */ }
@@ -146,13 +147,13 @@ class Form extends Component {
                 </div>
                 <br/>
                 {/* SELECT FIELD */}
-                <select ref={(input) => this.langcat = input} value={this.state.selectedValue} onChange={this.selectHandler}> 
+                <select ref={(input) => this.langcat = input} className="form-control" value={this.state.selectedValue} onChange={this.selectHandler}> 
                     <option value="ruby">Ruby</option>
                     <option value="python">Python</option>
                     <option value="express">Express</option>
                 </select>
                 <br/><br/>
-                <button type="submit">Submit</button>
+                <button className="btn btn-primary" type="submit">Submit</button>
             </form>
         )
     }

@@ -1,8 +1,9 @@
 .parent_search_box {
     position: relative;
     float: right;
-    top: -30px;
-    right: 15px;
+    top: -41px;
+    right: 30px;
+    width: 300px;
 }
 
 div.search_bar {
@@ -10,11 +11,10 @@ div.search_bar {
     right: 10px;
 }
 
-.search_field {
-    width: 250px;
-}
-
 span.search_icon {
-    float: right;
     cursor: pointer;
+    position: absolute;
+    right: 5px;
+    top: 6px;
+
 }

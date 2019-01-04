@@ -14,41 +14,78 @@ const posterPath = 'https://image.tmdb.org/t/p/w500/';
 class ShowMovies extends Component {
    render(){
        var results = this.props.movies;
-       console.log('results');
-       console.log(results);
        return(
-            <div className='movies_list'>
-                {
-                    results && results.map((val, key) => {
-                        if (!this.props.bySearch)
-                        {       
-                            console.log('yes');                  
-                            return (
-                                <div key={key} className="movies_section">                            
-                                    <img className="movie_image" src={posterPath+val.poster_path} alt="" />
-                                    <div className="movie_content">
-                                        <h1 className="movie_title">{val.original_title}</h1>
-                                        <p className="movie_overview">{val.overview}</p>
-                                        <p>Popularity : <strong>{val.popularity}</strong></p>
-                                        <p>Release Date : <strong>{val.release_date}</strong></p>
-                                        <span className="avg_vote">Average Vote : <strong>{val.vote_average}</strong></span>
-                                        <span className="total_vote">Total Vote : <strong>{val.vote_count}</strong></span>
-                                        <p>Language : <strong>{val.original_language}</strong></p>
+            // <a href="#" className="movie_hover">
+                <div className='movies_list'>
+                    {
+                        results && results.map((val, key) => {
+                            if (!this.props.bySearch)
+                            {                    
+                                return (
+                                    <a href="#" className="movie_hover">
+                                        <div key={key} className="movies_section">                            
+                                            <img className="movie_image" src={posterPath+val.poster_path} alt="" />
+                                            <div className="movie_content">
+                                                <h1 className="movie_title">{val.original_title}</h1>
+                                                <p className="movie_overview">{val.overview}</p>
+                                                <p>Popularity : <strong>{val.popularity}</strong></p>
+                                                <p>Release Date : <strong>{val.release_date}</strong></p>
+                                                <span className="avg_vote">Average Vote : <strong>{val.vote_average}</strong></span>
+                                                <span className="total_vote">Total Vote : <strong>{val.vote_count}</strong></span>
+                                                <p>Language : <strong>{val.original_language}</strong></p>
+                                            </div>
+                                            <div className="movie_popup">
+                                                <ShowMoviesPopup />
+                                                <p>Popularity : <strong>{val.popularity}</strong></p>
+                                                <p>Release Date : <strong>{val.release_date}</strong></p>
+                                                <span className="avg_vote">Average Vote : <strong>{val.vote_average}</strong></span>
+                                                <span className="total_vote">Total Vote : <strong>{val.vote_count}</strong></span>
+                                                <p>Language : <strong>{val.original_language}</strong></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                )
+                            } else { 
+                                return (
+                                    <div key={key} className="movies_section">                            
+                                        <img className="movie_image" src={val.Poster} alt="" />
+                                        <div className="movie_content">
+                                            <h1 className="movie_title">{val.Title}</h1>
+                                            <p className="movie_type">Type : <strong>{val.Type}</strong></p>
+                                            <p>Release Year : <strong>{val.Year}</strong></p>
+                                        </div>
                                     </div>
-                                </div>
-                            )
-                        } else {
-                            console.log('nooo');
-                            return (
-                                <div>HEEEEEEE</div>
-                            )
-                        }
-                    })
-                }
-            </div>
+                                )
+                            }
+                        })
+                    }
+                </div>
+            // </a>
        )
    }
+}
 
+class ShowMoviesPopup extends Component 
+{
+    componentDidMount = () => {
+        $("a.movie_hover").click(function (e) {
+            e.preventDefault();
+            console.log(this);
+            $(this).find('.movie_popup').addClass('movie_popup_show');
+        });
+
+        $(document).on("keydown", function (e) {
+            if (e.keyCode === 27) {
+                $('.movie_popup_show').hide();
+            }
+        });
+    }
+
+    render() {
+        return (
+            null
+        )
+    }
 }
 
 class Movies extends Component 
@@ -85,7 +122,6 @@ class Movies extends Component
         $.ajax({
             url: url,
             success: (response) => {
-                console.log('===> ', response);
                 this.setState({
                     content: response,
                     movieSearch : true
