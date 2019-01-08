@@ -6,12 +6,17 @@ a:hover {
 .movies_list div.movies_section{
     width: 50%;
     display: inline-flex;
+    padding-bottom: 20px;
 }
 
 .movies_list img.movie_image{
+    cursor: pointer;
     height: 300px;
     width: 100%;
     max-width: 220px;
+    -webkit-box-shadow: 8px 8px 6px -6px black;
+	   -moz-box-shadow: 8px 8px 6px -6px black;
+	        box-shadow: 8px 8px 6px -6px black;
 }
 
 .movies{
@@ -19,8 +24,16 @@ a:hover {
 }
 
 .movie_content {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+    width: 100%;
+}
+
+.movie_title {
+    cursor: pointer;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+	   -moz-box-shadow: 0 8px 6px -6px black;
+	        box-shadow: 0 8px 6px -6px black;
 }
 
 .movies_list span.total_vote
@@ -33,26 +46,63 @@ a:hover {
     text-align: justify;
 }
 
-a.movie_hover {
+.movie_hover {
     text-decoration: none;
     color: #333;
 }
 
-.movie_popup {
-    visibility: hidden;
+.mv_popup_hide {
+    display: none;
 }
 
-.movie_popup_show {
-    visibility: visible;
-    height: 350px !important;
+.mv_popup_show {
+    display: show;
+    height: auto;
     width: 900px;
     position: fixed;
-    z-index: 1000000;
-    top: 20%;
+    z-index: 2;
+    top: 15%;
     padding: 25px;
-    overflow-y: scroll;
+    overflow-y: auto;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, 0%);
     background: antiquewhite;
+    -moz-box-shadow:    inset 0 0 10px #000000;
+    -webkit-box-shadow: inset 0 0 10px #000000;
+    box-shadow:         inset 0 0 10px #000000;
+}
+
+.mv_popup_img {
+    width: 30%;
+    float: left;
+}
+
+.mv_popup_content {
+    width: 70%;
+    float: right;
+}
+
+.popupCloseButton {
+    background-color: #fff;
+    border: 3px solid #999;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 25px;
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+.popupCloseButton:hover {
+    background-color: #ccc;
+}
+
+.movie_popup .movie_title, .movie_popup .movie_image {
+    cursor: default;
 }

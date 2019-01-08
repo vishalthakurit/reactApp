@@ -54,3 +54,15 @@ body {
 .navebar_menu ul li a:hover {
   color: #333;
 }
+
+.black_background {
+  display: none;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  opacity: 0.3;
+  background-color: #000000;
+  left: 0;
+  position: fixed;
+  top: 0;
+}

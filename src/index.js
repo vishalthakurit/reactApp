@@ -19,6 +19,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //ReactDOM.render(<CustomRoutes />, document.getElementById('root'));
 ReactDOM.render(
     <Provider store={store}>
+      <div className="black_background"></div>
       <CustomRoutes />
       <div id="social_links">
             <CustomLinks link="https://www.facebook.com/" title="Go To Facebook" value="Facebook"  target = '_blank' />
