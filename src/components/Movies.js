@@ -13,62 +13,45 @@ const posterPath = 'https://image.tmdb.org/t/p/w500/';
 // console.log('===> ', parsed);
 
 class ShowMovies extends Component {
+
    render(){
        var results = this.props.movies;
        return(
-            // <a href="#" className="movie_hover">
-                <div className='movies_list'>
-                    {
-                        results && results.map((val, key) => {
-                            if (!this.props.bySearch)
-                            {                    
-                                return (
-                                   // <a href="javascript:void(0)" className="movie_hover" key={key}>
-                                        <div key={key} className="movies_section">                            
-                                            <img className="movie_image movie_hover" src={posterPath+val.poster_path} alt="" />
-                                            <div className="movie_content">
-                                                <h2 className="movie_title movie_hover">{val.original_title}</h2>
-                                                <p>Popularity : <strong>{val.popularity}</strong></p>
-                                                <p>Release Date : <strong>{val.release_date}</strong></p>
-                                                <span className="avg_vote">Average Vote : <strong>{val.vote_average}</strong></span>
-                                                <span className="total_vote">Total Vote : <strong>{val.vote_count}</strong></span>
-                                                <p>Language : <strong>{val.original_language}</strong></p>
-                                            </div>
-                                            <div className="movie_popup mv_popup_hide">
-                                                <ShowMoviesPopup />
-                                                <h2 className="movie_title">{val.original_title}</h2>
-                                                <div className="mv_popup_img">
-                                                    <img className="movie_image" src={posterPath+val.poster_path} alt="" />
-                                                </div>
-                                                <div className="mv_popup_content">
-                                                    <div className="popupCloseButton">X</div>
-                                                    <p className="movie_overview">{val.overview}</p>
-                                                    <p>Popularity : <strong>{val.popularity}</strong></p>
-                                                    <p>Release Date : <strong>{val.release_date}</strong></p>
-                                                    <span className="avg_vote">Average Vote : <strong>{val.vote_average}</strong></span>
-                                                    <span className="total_vote">Total Vote : <strong>{val.vote_count}</strong></span>
-                                                    <p>Language : <strong>{val.original_language}</strong></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                   // </a>
-                                )
-                            } else { 
-                                return (
+            <div className='movies_list'>
+                {
+                    results && results.map((val, key) => {
+                        if (!this.props.bySearch)
+                        {                    
+                            return (
                                     <div key={key} className="movies_section">                            
-                                        <img className="movie_image movie_hover" src={val.Poster} alt="" />
+                                        <img className="movie_image movie_hover" src={posterPath+val.poster_path} alt="" />
                                         <div className="movie_content">
-                                            <h1 className="movie_title movie_hover">{val.Title}</h1>
-                                            <p className="movie_type">Type : <strong>{val.Type}</strong></p>
-                                            <p>Release Year : <strong>{val.Year}</strong></p>
+                                            <h2 className="movie_title movie_hover">{val.original_title}</h2>
+                                            <p>Popularity : <strong>{val.popularity}</strong></p>
+                                            <p>Release Date : <strong>{val.release_date}</strong></p>
+                                            <span className="avg_vote">Average Vote : <strong>{val.vote_average}</strong></span>
+                                            <span className="total_vote">Total Vote : <strong>{val.vote_count}</strong></span>
+                                            <p>Language : <strong>{val.original_language}</strong></p>
                                         </div>
+                                        <ShowMoviesPopup mvTitle={val.original_title} mvImage={posterPath+val.poster_path} mvOverview={val.overview} mvPopularity={val.popularity} mvReleaseDate={val.release_date} mvAvgVote={val.vote_count} mvTotalVote={val.vote_count} mvlanguage={val.original_language} />                                                
                                     </div>
-                                )
-                            }
-                        })
-                    }
-                </div>
-            // </a>
+                            )
+                        } else { 
+                            return (
+                                <div key={key} className="movies_section" data-imdbid={val.imdbID}>                            
+                                    <img className="movie_image movie_hover" src={val.Poster} alt="" />
+                                    <div className="movie_content">
+                                        <h2 className="movie_title movie_hover">{val.Title}</h2>
+                                        <p className="movie_type">Type : <strong>{val.Type}</strong></p>
+                                        <p>Release Year : <strong>{val.Year}</strong></p>
+                                    </div>
+                                    <input type="hidden" className="mv_imdbid" value={val.imdbID} />
+                                </div>
+                            )
+                        }
+                    })
+                }
+            </div>
        )
    }
 }
@@ -78,9 +61,13 @@ class ShowMoviesPopup extends Component
     componentDidMount = () => {
         $(".movie_hover").click(function (e) {
             e.preventDefault();
-            $('.black_background').show();
-            $(this).parents('.movies_section').find('.movie_popup').addClass('mv_popup_show');
-            $(this).parents('.movies_section').find('.movie_popup').removeClass('mv_popup_hide');
+            if($(this).parents('.movies_section').find('.mv_imdbid').length) {
+                console.log($(this).parents('.movies_section').find('.mv_imdbid'));
+            } else {
+                $('.black_background').show();
+                $(this).parents('.movies_section').find('.movie_popup').addClass('mv_popup_show');
+                $(this).parents('.movies_section').find('.movie_popup').removeClass('mv_popup_hide');
+            }
         });
 
         function closeMoviePopup() {
@@ -103,7 +90,21 @@ class ShowMoviesPopup extends Component
 
     render() {
         return (
-            null
+            <div className="movie_popup mv_popup_hide">
+                <h2 className="movie_title">{this.props.mvTitle}</h2>
+                <div className="mv_popup_img">
+                    <img className="movie_image" src={this.props.mvImage} alt="" />
+                </div>
+                <div className="mv_popup_content">
+                    <div className="popupCloseButton">X</div>
+                    <p className="movie_overview">{this.props.mvOverview}</p>
+                    <p>Popularity : <strong>{this.props.mvPopularity}</strong></p>
+                    <p>Release Date : <strong>{this.props.mvReleaseDate}</strong></p>
+                    <span className="avg_vote">Average Vote : <strong>{this.props.mvAvgVote}</strong></span>
+                    <span className="total_vote">Total Vote : <strong>{this.props.mvTotalVote}</strong></span>
+                    <p>Language : <strong>{this.props.mvlanguage}</strong></p>
+                </div>
+            </div>
         )
     }
 }
@@ -123,7 +124,8 @@ class Movies extends Component
    }
 
    componentDidMount = () => {
-       var url = actionType.TMDBAPI + 1;
+       console.log('==>>> ', this.state.activePage);
+       var url = actionType.TMDBAPI + this.state.activePage;
        $.ajax({
            url: url,
            success: (response) => {
@@ -180,7 +182,7 @@ class Movies extends Component
                 <Pagination
                     activePage={this.state.activePage}
                     itemsCountPerPage={10}
-                    totalItemsCount={450}
+                    totalItemsCount={(this.state.movieSearch) ? totalResults : total_results}
                     pageRangeDisplayed={5}
                     onChange={this.handlePageChange}
                 />
