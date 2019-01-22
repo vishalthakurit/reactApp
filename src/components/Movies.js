@@ -11,6 +11,7 @@ const posterPath = 'https://image.tmdb.org/t/p/w500/';
 // const queryString = require('query-string');
 // const parsed = queryString.parse(window.location.search);
 // console.log('===> ', parsed);
+var moviePopupData = [];
 
 class ShowMovies extends Component {
 
@@ -45,7 +46,7 @@ class ShowMovies extends Component {
                                         <p className="movie_type">Type : <strong>{val.Type}</strong></p>
                                         <p>Release Year : <strong>{val.Year}</strong></p>
                                     </div>
-                                    <input type="hidden" className="mv_imdbid" value={val.imdbID} />
+                                    <input type="hidden" className="mv_imdbid" value={val.imdbID} ref={(input) => this.mvid = input} />
                                 </div>
                             )
                         }
@@ -59,10 +60,12 @@ class ShowMovies extends Component {
 class ShowMoviesPopup extends Component 
 {
     componentDidMount = () => {
+
         $(".movie_hover").click(function (e) {
             e.preventDefault();
             if($(this).parents('.movies_section').find('.mv_imdbid').length) {
-                console.log($(this).parents('.movies_section').find('.mv_imdbid'));
+                var imdbId = $(this).parents('.movies_section').find('.mv_imdbid').val();
+                searchByMovieId(imdbId);
             } else {
                 $('.black_background').show();
                 $(this).parents('.movies_section').find('.movie_popup').addClass('mv_popup_show');
@@ -86,7 +89,21 @@ class ShowMoviesPopup extends Component
             e.preventDefault();
             closeMoviePopup();            
         });
-    }
+
+        function searchByMovieId(id) {
+            var url = actionType.OMDBMOVIEAPIBYID + id + actionType.OMDBAPIKEY;
+            $.ajax({
+                url: url,
+                success: (response) => {
+                    moviePopupData = response;
+                    console.log('===> ', moviePopupData);
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            });
+        }
+    }    
 
     render() {
         return (
@@ -124,7 +141,7 @@ class Movies extends Component
    }
 
    componentDidMount = () => {
-       console.log('==>>> ', this.state.activePage);
+       //console.log('==>>> ', this.state.activePage);
        var url = actionType.TMDBAPI + this.state.activePage;
        $.ajax({
            url: url,
@@ -142,7 +159,7 @@ class Movies extends Component
 
    getSearch(text) {
         // searchMovies(searchText);    OR
-        var url = actionType.OMDBMOVIEAPI + text + actionType.OMDBAPIKEY;
+        var url = actionType.OMDBMOVIEAPIBYNAME + text + actionType.OMDBAPIKEY;
         $.ajax({
             url: url,
             success: (response) => {
