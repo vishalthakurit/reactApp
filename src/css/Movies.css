@@ -19,6 +19,12 @@ a:hover {
 	        box-shadow: 8px 8px 6px -6px black;
 }
 
+img.movie_image:hover {
+    -webkit-box-shadow: 8px 8px 6px -6px #007C57;
+	   -moz-box-shadow: 8px 8px 6px -6px #007C57;
+	        box-shadow: 8px 8px 6px -6px #007C57;
+}
+
 .movies{
     padding: 10px;
 }

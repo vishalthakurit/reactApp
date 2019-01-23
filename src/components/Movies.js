@@ -15,7 +15,20 @@ var moviePopupData = [];
 
 class ShowMovies extends Component {
 
-   render(){
+    constructor(props) {
+        super(props)
+        this.movieHoverHandeler = this.movieHoverHandeler.bind(this);
+        this.state = {
+         
+      }
+    }
+    
+    movieHoverHandeler(event) {
+        event.preventDefault();
+        console.log('====> ', event.target);
+    }
+
+    render(){
        var results = this.props.movies;
        return(
             <div className='movies_list'>
@@ -25,7 +38,7 @@ class ShowMovies extends Component {
                         {                    
                             return (
                                     <div key={key} className="movies_section">                            
-                                        <img className="movie_image movie_hover" src={posterPath+val.poster_path} alt="" />
+                                        <img className="movie_image movie_hover" onClick={this.movieHoverHandeler} src={posterPath+val.poster_path} alt="" />
                                         <div className="movie_content">
                                             <h2 className="movie_title movie_hover">{val.original_title}</h2>
                                             <p>Popularity : <strong>{val.popularity}</strong></p>
@@ -140,6 +153,8 @@ class Movies extends Component
        this.handlePageChange = this.handlePageChange.bind(this);
    }
 
+// Get Movies data first time 
+
    componentDidMount = () => {
        //console.log('==>>> ', this.state.activePage);
        var url = actionType.TMDBAPI + this.state.activePage;
@@ -157,7 +172,9 @@ class Movies extends Component
        });
    }
 
-   getSearch(text) {
+// Get Movies data by search the movie name    
+
+    getSearch(text) {
         // searchMovies(searchText);    OR
         var url = actionType.OMDBMOVIEAPIBYNAME + text + actionType.OMDBAPIKEY;
         $.ajax({
@@ -172,14 +189,14 @@ class Movies extends Component
                 console.log(error);
             }
         });
-   }
+    }
 
-   handlePageChange(pageNumber) {
+    handlePageChange(pageNumber) {
         console.log(`active page is ${pageNumber}`);
         this.setState({activePage: pageNumber})
     }
 
-   render(){
+    render(){
        const { results, total_results, totalResults } = this.state.content;
        var searchData = '';
        
@@ -205,7 +222,7 @@ class Movies extends Component
                 />
            </React.Fragment>
        )
-   }
+    }
 }
 
 export default Movies;

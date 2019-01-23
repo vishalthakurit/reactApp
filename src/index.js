@@ -12,6 +12,7 @@ import CustomRoutes from './components/Routes';
 import { Provider } from 'react-redux';
 import store from './store';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import FormContainer from "./components/FormContainer";
 
 //import registerServiceWorker from './registerServiceWorker';
 
@@ -32,6 +33,10 @@ ReactDOM.render(
         </div>
         <div id="form_section">
           <Form />
+        </div>
+        <div className="col-md-6">
+            <h3> Sample Form Container </h3>
+            <FormContainer />
         </div>
     </Provider>,
     document.getElementById('root')
