@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {changeState} from '../store/action/action';
+// import Form from "./Form";
+import FormContainer from "./FormContainer";
 
 class About extends Component {
     
@@ -36,6 +38,13 @@ class About extends Component {
             <input type="text" value={this.state.lastName} onChange={this.getUserInput.bind(this)} />
             <button className="change_state_btn" onClick={this.updateState.bind(this)}>Change State</button>
             <p>Company Name is : {this.props.match.params.company}</p>
+            {/* <div id="form_section">
+                <Form />
+            </div> */}
+            <div className="col-md-6">
+                <h3> Sample Form Container </h3>
+                <FormContainer />
+            </div>
         </div>
     );
   }

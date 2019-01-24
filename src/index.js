@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom';
 import './css/index.css';
 //import App from './App';
 // import CustomComponent from './Header';
-import CustomLinks from './components/socialLinks';
-import Methods from './components/customMethods';
-import Clock from './components/Clock';
-import Logger from './components/Logger';
-import Form from "./components/Form";
+// import CustomLinks from './components/socialLinks';
+// import Methods from './components/customMethods';
+// import Clock from './components/Clock';
+// import Logger from './components/Logger';
+// import Form from "./components/Form";
 import CustomRoutes from './components/Routes';
 import { Provider } from 'react-redux';
 import store from './store';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import FormContainer from "./components/FormContainer";
+// import FormContainer from "./components/FormContainer";
 
 //import registerServiceWorker from './registerServiceWorker';
 
@@ -22,7 +22,7 @@ ReactDOM.render(
     <Provider store={store}>
       <div className="black_background"></div>
       <CustomRoutes />
-      <div id="social_links">
+        {/* <div id="social_links">
             <CustomLinks link="https://www.facebook.com/" title="Go To Facebook" value="Facebook"  target = '_blank' />
             <CustomLinks link="https://www.youtube.com/" title="Go To You-Tube" value="YouTube"  target = '_blank' />
             <CustomLinks link="https://www.linkedin.com/" title="Go To LinkedIn" value="LinkedIn"  target = '_blank' />
@@ -30,14 +30,14 @@ ReactDOM.render(
             <Methods />
             <Clock />
             <Logger />
-        </div>
-        <div id="form_section">
+        </div> */}
+        {/* <div id="form_section">
           <Form />
-        </div>
-        <div className="col-md-6">
+        </div> */}
+        {/* <div className="col-md-6">
             <h3> Sample Form Container </h3>
             <FormContainer />
-        </div>
+        </div> */}
     </Provider>,
     document.getElementById('root')
   )
