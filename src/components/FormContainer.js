@@ -43,7 +43,7 @@ class FormContainer extends Component {
           name: value
         }
       }),
-      () => console.log(this.state.newUser)
+      // () => console.log(this.state.newUser)
     );
   }
 
@@ -56,7 +56,7 @@ class FormContainer extends Component {
           age: value
         }
       }),
-      () => console.log(this.state.newUser)
+      // () => console.log(this.state.newUser)
     );
   }
 
@@ -70,12 +70,12 @@ class FormContainer extends Component {
           [name]: value
         }
       }),
-      () => console.log(this.state.newUser)
+      // () => console.log(this.state.newUser)
     );
   }
 
   handleTextArea(e) {
-    console.log("Inside handleTextArea");
+    // console.log("Inside handleTextArea");
     let value = e.target.value;
     this.setState(
       prevState => ({
@@ -84,7 +84,7 @@ class FormContainer extends Component {
           about: value
         }
       }),
-      () => console.log(this.state.newUser)
+      // () => console.log(this.state.newUser)
     );
   }
 
