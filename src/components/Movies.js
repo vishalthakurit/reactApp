@@ -11,7 +11,6 @@ const posterPath = 'https://image.tmdb.org/t/p/w500/';
 // const queryString = require('query-string');
 // const parsed = queryString.parse(window.location.search);
 // console.log('===> ', parsed);
-var moviePopupData = [];
 
 class ShowMovies extends Component {
 
@@ -23,68 +22,86 @@ class ShowMovies extends Component {
       }
     }
     
-    movieHoverHandeler(event) {
+    movieHoverHandeler(event, key) {
         event.preventDefault();
-        console.log('====> ', event.target);
+        if(key) {
+            console.log('====> ', '-',key,'=', event.target);
+            var url = actionType.OMDBMOVIEAPIBYID + key + actionType.OMDBAPIKEY;
+            let self = this;
+            $.ajax({
+            url: url,
+            success: (response) => {  
+                self.setState({show: true, mvdata: response});
+            },
+            error: (error) => {
+                console.log(error);
+            }
+            });
+        } else {
+            this.setState({show: true});
+        }
     }
 
     render(){
-       var results = this.props.movies;
-       return(
-            <div className='movies_list'>
-                {
-                    results && results.map((val, key) => {
-                        if (!this.props.bySearch)
-                        {                    
-                            return (
-                                    <div key={key} className="movies_section">                            
-                                        <img className="movie_image movie_hover" onClick={this.movieHoverHandeler} src={posterPath+val.poster_path} alt="" />
-                                        <div className="movie_content">
-                                            <h2 className="movie_title movie_hover">{val.original_title}</h2>
-                                            <p>Popularity : <strong>{val.popularity}</strong></p>
-                                            <p>Release Date : <strong>{val.release_date}</strong></p>
-                                            <span className="avg_vote">Average Vote : <strong>{val.vote_average}</strong></span>
-                                            <span className="total_vote">Total Vote : <strong>{val.vote_count}</strong></span>
-                                            <p>Language : <strong>{val.original_language}</strong></p>
-                                        </div>
-                                        <ShowMoviesPopup mvTitle={val.original_title} mvImage={posterPath+val.poster_path} mvOverview={val.overview} mvPopularity={val.popularity} mvReleaseDate={val.release_date} mvAvgVote={val.vote_count} mvTotalVote={val.vote_count} mvlanguage={val.original_language} />                                                
-                                    </div>
-                            )
-                        } else { 
-                            return (
-                                <div key={key} className="movies_section" data-imdbid={val.imdbID}>                            
-                                    <img className="movie_image movie_hover" src={val.Poster} alt="" />
-                                    <div className="movie_content">
-                                        <h2 className="movie_title movie_hover">{val.Title}</h2>
-                                        <p className="movie_type">Type : <strong>{val.Type}</strong></p>
-                                        <p>Release Year : <strong>{val.Year}</strong></p>
-                                    </div>
-                                    <input type="hidden" className="mv_imdbid" value={val.imdbID} ref={(input) => this.mvid = input} />
-                                </div>
-                            )
-                        }
-                    })
-                }
-            </div>
-       )
-   }
+      console.log(this.state, '000==000');
+      var data = '';
+      if(this.state.mvdata) {
+        data = this.state.mvdata;
+      }
+      var results = this.props.movies;
+      return(
+        <div className='movies_list'>
+          {results && results.map((val, key) => {
+              if (!this.props.bySearch){
+                return (
+                <div key={key} className="movies_section">
+                    <img className="movie_image movie_hover" onClick={e => this.movieHoverHandeler(e)} src={posterPath+val.poster_path} alt="" />
+                    <div className="movie_content">
+                      <h2 className="movie_title movie_hover">{val.original_title}</h2>
+                      <p>Popularity : <strong>{val.popularity}</strong></p>
+                      <p>Release Date : <strong>{val.release_date}</strong></p>
+                      <span className="avg_vote">Average Vote : <strong>{val.vote_average}</strong></span>
+                      <span className="total_vote">Total Vote : <strong>{val.vote_count}</strong></span>
+                      <p>Language : <strong>{val.original_language}</strong></p>
+                    </div>                    
+                    <ShowMoviesPopup show={this.state.show} mvTitle={val.original_title} mvImage={posterPath+val.poster_path} mvOverview={val.overview} mvPopularity={val.popularity} mvReleaseDate={val.release_date} mvAvgVote={val.vote_count} mvTotalVote={val.vote_count} mvlanguage={val.original_language} />                                               
+                </div>
+                )
+              } else { 
+                return (
+                  <div key={key} className="movies_section" onClick={e => this.movieHoverHandeler(e, val.imdbID)}>
+                    <img className="movie_image movie_hover" src={val.Poster} alt="" />
+                    <div className="movie_content">
+                      <h2 className="movie_title movie_hover">{val.Title}</h2>
+                      <p className="movie_type">Type : <strong>{val.Type}</strong></p>
+                      <p>Release Year : <strong>{val.Year}</strong></p>
+                    </div>
+                    <ShowMoviesPopup show={this.state.show} mvTitle={data.Title} mvImage={posterPath+val.poster_path} mvOverview={data.Plot} mvPopularity={val.popularity} mvReleaseDate={data.Released} mvAvgVote={val.vote_count} mvTotalVote={val.vote_count} mvlanguage={data.Language} />
+                    {/* <input type="hidden" className="mv_imdbid" value={val.imdbID} ref={(input) => this.mvid = input} /> */}
+                 </div>
+                )
+              }
+            })
+          }
+      </div>
+    )
+  }
 }
 
-class ShowMoviesPopup extends Component 
-{
+class ShowMoviesPopup extends Component {
     componentDidMount = () => {
-
-        $(".movie_hover").click(function (e) {
-            e.preventDefault();
-            if($(this).parents('.movies_section').find('.mv_imdbid').length) {
-                var imdbId = $(this).parents('.movies_section').find('.mv_imdbid').val();
-                searchByMovieId(imdbId);
-            } else {
-                $('.black_background').show();
-                $(this).parents('.movies_section').find('.movie_popup').addClass('mv_popup_show');
-                $(this).parents('.movies_section').find('.movie_popup').removeClass('mv_popup_hide');
-            }
-        });
+        console.log('rrrrrrrr');
+        // $(".movie_hover").click(function (e) {
+        //     e.preventDefault();
+        //     if($(this).parents('.movies_section').find('.mv_imdbid').length) {
+        //         var imdbId = $(this).parents('.movies_section').find('.mv_imdbid').val();
+        //         searchByMovieId(imdbId);
+        //     } else {
+        //         $('.black_background').show();
+        //         $(this).parents('.movies_section').find('.movie_popup').addClass('mv_popup_show');
+        //         $(this).parents('.movies_section').find('.movie_popup').removeClass('mv_popup_hide');
+        //     }
+        // });
 
         function closeMoviePopup() {
             $('.black_background').hide();
@@ -103,24 +120,24 @@ class ShowMoviesPopup extends Component
             closeMoviePopup();            
         });
 
-        function searchByMovieId(id) {
-            var url = actionType.OMDBMOVIEAPIBYID + id + actionType.OMDBAPIKEY;
-            $.ajax({
-                url: url,
-                success: (response) => {
-                    moviePopupData = response;
-                    console.log('===> ', moviePopupData);
-                },
-                error: (error) => {
-                    console.log(error);
-                }
-            });
-        }
+        // function searchByMovieId(id) {
+        //     var url = actionType.OMDBMOVIEAPIBYID + id + actionType.OMDBAPIKEY;
+        //     $.ajax({
+        //         url: url,
+        //         success: (response) => {
+        //             moviePopupData = response;
+        //             console.log('===> ', moviePopupData);
+        //         },
+        //         error: (error) => {
+        //             console.log(error);
+        //         }
+        //     });
+        // }
     }    
 
     render() {
         return (
-            <div className="movie_popup mv_popup_hide">
+            <div className={`movie_popup ${(this.props.show) ? 'mv_popup_show' : 'mv_popup_hide' }`}>
                 <h2 className="movie_title">{this.props.mvTitle}</h2>
                 <div className="mv_popup_img">
                     <img className="movie_image" src={this.props.mvImage} alt="" />

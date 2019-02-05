@@ -109,50 +109,46 @@ class Form extends Component {
                 { /* RADIO SECTION */ }
                 <div className={this.state.radioGroup['radioGroupClass']}>
                     <b><i>Developers Categories :</i></b> 
-                    <br/><br/>
                     <label>
-                        PHP :  
+                        <label className="title">PHP</label> 
                         <input ref={(input) => this.devcat = input} type="radio" name="devcategory" value="phpradio" checked={this.state.radioGroup['phpradio']} onChange={this.radioHandler}></input>
                     </label>
-                    <br />
+                    <span className="separator">|</span>
                     <label>
-                        JAVA :
+                        <label className="title">JAVA</label> 
                         <input ref={(input) => this.devcat = input} type="radio" name="devcategory" value="javaradio" checked={this.state.radioGroup['javaradio']} onChange={this.radioHandler}></input>
                     </label>
-                    <br />
+                    <span className="separator">|</span>
                     <label>
-                        RUBY :
+                        <label className="title">RUBY</label>
                         <input ref={(input) => this.devcat = input} type="radio" name="devcategory" value="rubyradio" checked={this.state.radioGroup['rubyradio']} onChange={this.radioHandler} />
                     </label>
                 </div>
-                <br/>
                 {/* CHECKBOX SECTION */}
-                <div className={this.state.radioGroup['checkboxGroupClass']}>
+                <div className={this.state.checkboxGroup['checkboxGroupClass']}>
                     <b><i>Technology Categories : </i></b>
-                    <br/><br/>
                     <label>
-                        REACT :  
+                        <label className="title">REACT</label>
                         <input ref={(input) => this.techcat = input} type="checkbox" name="tech" value="reacttech" checked={this.state.checkboxGroup['reacttech']} onChange={this.checkboxHandler}></input>
                     </label>
-                    <br />
+                    <span className="separator">|</span>
                     <label>
-                        NODE :
+                        <label className="title">NODE</label>
                         <input ref={(input) => this.techcat = input} type="checkbox" name="tech" value="nodetech" checked={this.state.checkboxGroup['nodetech']} onChange={this.checkboxHandler}></input>
                     </label>
-                    <br />
+                    <span className="separator">|</span>
                     <label>
-                        ANGULAR :
+                        <label className="title">ANGULAR</label>
                         <input ref={(input) => this.techcat = input} type="checkbox" name="tech" value="angulartech" checked={this.state.checkboxGroup['angulartech']} onChange={this.checkboxHandler} />
                     </label>
                 </div>
-                <br/>
                 {/* SELECT FIELD */}
                 <select ref={(input) => this.langcat = input} className="form-control" value={this.state.selectedValue} onChange={this.selectHandler}> 
                     <option value="ruby">Ruby</option>
                     <option value="python">Python</option>
                     <option value="express">Express</option>
                 </select>
-                <br/><br/>
+                <br/>
                 <button className="btn btn-primary" type="submit">Submit</button>
             </form>
         )

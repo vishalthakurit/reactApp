@@ -28,7 +28,7 @@ body {
 #form_section {
   width: 48%;
   padding: 10px;
-  float: right;
+  /* float: right; */
   background: whitesmoke;
 }
 
