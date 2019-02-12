@@ -5,6 +5,7 @@ import CustomLinks from './socialLinks';
 import Methods from './customMethods';
 import Clock from './Clock';
 import Logger from './Logger';
+import Slideshow from './SlideShow';
 
 class App extends Component {
     render() {
@@ -14,6 +15,7 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="logo" />
                     <h1 className="App-title">Welcome to My React App</h1>
                 </header>
+                <Slideshow />
                 <div id="social_links">
                     <CustomLinks link="https://www.facebook.com/" title="Go To Facebook" value="Facebook"  target = '_blank' />
                     <CustomLinks link="https://www.youtube.com/" title="Go To You-Tube" value="YouTube"  target = '_blank' />

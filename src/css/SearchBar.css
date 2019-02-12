@@ -3,6 +3,7 @@
     float: right;
     top: -49px;
     right: 30px;
+    z-index: 99;
 }
 
 div.search_bar {

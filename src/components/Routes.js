@@ -63,7 +63,7 @@ class CustomRoutes extends Component
         return(
             <Router history={browserHistory}>
                 <div>
-                    <nav className="navebar_menu" style={{ width: "100%", position: this.state.scrollingLock ? "fixed" : "relative"}}>
+                    <nav className="navebar_menu" style={{ width: "100%", zIndex: 9, position: this.state.scrollingLock ? "fixed" : "relative"}}>
                         <ul>
                             <li>
                                 <Link to="/">Home</Link>

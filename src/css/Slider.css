@@ -1,0 +1,11 @@
+.react-slideshow-wrapper .images-wrap * {
+    height: 300px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.react-slideshow-container + div.indicators {
+    margin-bottom: 20px;
+}
+    

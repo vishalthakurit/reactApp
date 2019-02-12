@@ -107,52 +107,6 @@ class ShowMovies extends Component {
 
 class ShowMoviesPopup extends Component 
 {
-    componentDidMount = () => {
-
-        // $(".movie_hover").click(function (e) {
-        //     e.preventDefault();
-        //     if($(this).parents('.movies_section').find('.mv_imdbid').length) {
-        //         var imdbId = $(this).parents('.movies_section').find('.mv_imdbid').val();
-        //         searchByMovieId(imdbId);
-        //     } else {
-        //         $('.black_background').show();
-        //         $(this).parents('.movies_section').find('.movie_popup').addClass('mv_popup_show');
-        //         $(this).parents('.movies_section').find('.movie_popup').removeClass('mv_popup_hide');
-        //     }
-        // });
-
-        // function closeMoviePopup() {
-        //     $('.black_background').hide();
-        //     $('.movie_popup').addClass('mv_popup_hide');
-        //     $('.movie_popup').removeClass('mv_popup_show');
-        // }
-
-        // $(document).on("keydown", function (e) {
-        //     if (e.keyCode === 27) {
-        //         closeMoviePopup();
-        //     }
-        // });
-
-        // $(".popupCloseButton").click(function(e) {
-        //     e.preventDefault();
-        //     closeMoviePopup();            
-        // });
-
-        // function searchByMovieId(id) {
-            // var url = actionType.OMDBMOVIEAPIBYID + id + actionType.OMDBAPIKEY;
-            // $.ajax({
-            //     url: url,
-            //     success: (response) => {
-            //         moviePopupData = response;
-            //         console.log('===> ', moviePopupData);
-            //     },
-            //     error: (error) => {
-            //         console.log(error);
-            //     }
-            // });
-        // }
-    }    
-
     render() {
         const { closePopUp } = this.props;
         return (
