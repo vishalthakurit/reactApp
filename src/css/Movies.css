@@ -51,6 +51,7 @@ img.movie_image:hover {
 .movie_overview{
     color: #84807F;
     text-align: justify;
+    margin-bottom: 10px !important;
 }
 
 .movie_hover {
@@ -114,4 +115,8 @@ img.movie_image:hover {
 
 .movie_popup .movie_title, .movie_popup .movie_image {
     cursor: default;
+}
+
+.movie_popup p {
+    margin-bottom: 0px;
 }

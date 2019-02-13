@@ -96,6 +96,11 @@ class ShowMovies extends Component {
                         mvAvgVote={this.state.popUpData.imdbRating}
                         mvTotalVote={this.state.popUpData.imdbVotes}
                         mvlanguage={this.state.popUpData.Language}
+                        mvCountry={this.state.popUpData.Country}
+                        mvGenre={this.state.popUpData.Genre}
+                        mvDirector={this.state.popUpData.Director}
+                        mvActors={this.state.popUpData.Actors}
+                        mvRuntime={this.state.popUpData.Runtime}
                         closePopUp = {e => this.setState({popId: null, showPopUp: false, popUpData: {}})}
                     />
                     : null
@@ -119,10 +124,15 @@ class ShowMoviesPopup extends Component
                     <div className="popupCloseButton" onClick={e => closePopUp()}>X</div>
                     <p className="movie_overview">{this.props.mvOverview}</p>
                     <p>Popularity : <strong>{this.props.mvPopularity}</strong></p>
+                    {this.props.mvActors ? <p>Actors : <strong>{this.props.mvActors}</strong></p> : ''}                    
+                    {this.props.mvCountry ? <p>Country : <strong>{this.props.mvCountry}</strong></p> : ''}
                     <p>Release Date : <strong>{this.props.mvReleaseDate}</strong></p>
                     <span className="avg_vote">Average Vote : <strong>{this.props.mvAvgVote}</strong></span>
                     <span className="total_vote">Total Vote : <strong>{this.props.mvTotalVote}</strong></span>
-                    <p>Language : <strong>{this.props.mvlanguage}</strong></p>
+                    <p>Language : <strong>{this.props.mvlanguage}</strong></p>                    
+                    {this.props.mvGenre ? <p>Genre : <strong>{this.props.mvGenre}</strong></p> : ''}
+                    {this.props.mvDirector ? <p>Director : <strong>{this.props.mvDirector}</strong></p> : ''}
+                    {this.props.mvRuntime ? <p>Movie Length : <strong>{this.props.mvRuntime}</strong></p> : ''}
                 </div>
             </div>
         )
