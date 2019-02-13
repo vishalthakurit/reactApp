@@ -43,11 +43,6 @@ img.movie_image:hover {
     padding-bottom: 5px;    
 }
 
-.movies_list span.total_vote
-{
-    float: right;
-}
-
 .movie_overview{
     color: #84807F;
     text-align: justify;
@@ -57,6 +52,10 @@ img.movie_image:hover {
 .movie_hover {
     text-decoration: none;
     color: #333;
+}
+
+.avg_vote {
+    display: block;
 }
 
 .mv_popup_hide {
@@ -70,6 +69,7 @@ img.movie_image:hover {
     position: fixed;
     z-index: 2;
     top: 15%;
+    font-size: 18px;
     padding: 25px;
     overflow-y: auto;
     left: 50%;

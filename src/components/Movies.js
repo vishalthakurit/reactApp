@@ -81,7 +81,7 @@ class ShowMovies extends Component {
                     mvOverview={val.overview}
                     mvPopularity={val.popularity}
                     mvReleaseDate={val.release_date}
-                    mvAvgVote={val.vote_count}
+                    mvAvgVote={val.vote_average}
                     mvTotalVote={val.vote_count}
                     mvlanguage={val.original_language}
                     closePopUp = {e => this.setState({popId: null, showPopUp: false, popUpData: {}})}
@@ -91,7 +91,6 @@ class ShowMovies extends Component {
                         mvTitle={this.state.popUpData.Title}
                         mvImage={this.state.popUpData.Poster}
                         mvOverview={this.state.popUpData.Plot}
-                        mvPopularity={this.state.popUpData.imdbRating}
                         mvReleaseDate={this.state.popUpData.Released}
                         mvAvgVote={this.state.popUpData.imdbRating}
                         mvTotalVote={this.state.popUpData.imdbVotes}
@@ -101,6 +100,8 @@ class ShowMovies extends Component {
                         mvDirector={this.state.popUpData.Director}
                         mvActors={this.state.popUpData.Actors}
                         mvRuntime={this.state.popUpData.Runtime}
+                        mvAwards={this.state.popUpData.Awards}
+                        mvBoxOffice={this.state.popUpData.BoxOffice}
                         closePopUp = {e => this.setState({popId: null, showPopUp: false, popUpData: {}})}
                     />
                     : null
@@ -123,14 +124,16 @@ class ShowMoviesPopup extends Component
                 <div className="mv_popup_content">
                     <div className="popupCloseButton" onClick={e => closePopUp()}>X</div>
                     <p className="movie_overview">{this.props.mvOverview}</p>
-                    <p>Popularity : <strong>{this.props.mvPopularity}</strong></p>
                     {this.props.mvActors ? <p>Actors : <strong>{this.props.mvActors}</strong></p> : ''}                    
-                    {this.props.mvCountry ? <p>Country : <strong>{this.props.mvCountry}</strong></p> : ''}
-                    <p>Release Date : <strong>{this.props.mvReleaseDate}</strong></p>
-                    <span className="avg_vote">Average Vote : <strong>{this.props.mvAvgVote}</strong></span>
-                    <span className="total_vote">Total Vote : <strong>{this.props.mvTotalVote}</strong></span>
-                    <p>Language : <strong>{this.props.mvlanguage}</strong></p>                    
+                    {this.props.mvAwards ? <p>Awards : <strong>{this.props.mvAwards}</strong></p> : ''}
+                    {this.props.mvBoxOffice ? <p>BoxOffice Collection : <strong>{this.props.mvBoxOffice}</strong></p> : ''}
                     {this.props.mvGenre ? <p>Genre : <strong>{this.props.mvGenre}</strong></p> : ''}
+                    {this.props.mvPopularity ? <span>Popularity : <strong>{this.props.mvPopularity}</strong></span> : ''}                    
+                    <span className="right">Release Date : <strong>{this.props.mvReleaseDate}</strong></span>
+                    {this.props.mvCountry ? <p>Country : <strong>{this.props.mvCountry}</strong></p> : ''}
+                    <span className="avg_vote">IMDB Rating : <strong>{this.props.mvAvgVote}</strong></span>
+                    <span className="total_vote right">Total Vote : <strong>{this.props.mvTotalVote}</strong></span>
+                    <p>Language : <strong>{this.props.mvlanguage}</strong></p>                    
                     {this.props.mvDirector ? <p>Director : <strong>{this.props.mvDirector}</strong></p> : ''}
                     {this.props.mvRuntime ? <p>Movie Length : <strong>{this.props.mvRuntime}</strong></p> : ''}
                 </div>
@@ -147,7 +150,8 @@ class Movies extends Component
        this.state = {
            content: [],
            movieSearch : false,
-           activePage : 1
+           activePage : 1,
+           searchText : ''
        }
        this.getSearch = this.getSearch.bind(this);
        this.handlePageChange = this.handlePageChange.bind(this);
@@ -158,6 +162,9 @@ class Movies extends Component
         if(event.keyCode === 27) {
             // console.log('eeeeeee');
             // this.closePopUp();
+        }
+        if(event.keyCode === 13) {
+            this.getSearch(this.state.searchText);
         }
     }
 
@@ -177,7 +184,9 @@ class Movies extends Component
             success: (response) => {
                 this.setState({
                     content: response,
-                    movieSearch : true
+                    movieSearch : true,
+                    searchText : text,
+                    activePage : 1
                 })
             },
             error: (error) => {
@@ -188,13 +197,19 @@ class Movies extends Component
 
     handlePageChange(pageNumber) {
         // console.log(`active page is ${pageNumber}`);
-        var url = actionType.TMDBAPI + pageNumber;
+        var url = '';
+        if(this.state.movieSearch) {
+            url = actionType.OMDBMOVIEAPIBYNAME + this.state.searchText + actionType.OMDBAPIKEY+'&page='+pageNumber;
+        } else {
+            url = actionType.TMDBAPI + pageNumber;
+            this.setState({movieSearch : false});
+        }
         $.ajax({
             url: url,
             success: (response) => {
                 this.setState({
-                        content: response,
-                        movieSearch: false
+                    content: response,
+                    activePage : pageNumber
                 })
             },
             error: (error) => {
@@ -215,7 +230,7 @@ class Movies extends Component
        }
        return(
            <React.Fragment>
-                <SearchField class="search_movies" placeholder="Seach Movies / Series ..." onSubmit={recieveData => this.getSearch(recieveData)} iconColor="#333" />
+                <SearchField class="search_movies" placeholder="Seach Movies / Series ..." onSubmit={recieveData => this.getSearch(recieveData)} onChange={ev => this.setState({searchText : ev.target.value})} iconColor="#333" />
                 <div className='movies'>
                     <p>Total Movies are <strong>{(this.state.movieSearch) ? totalResults : total_results}</strong></p>
                     <ShowMovies movies={searchData} bySearch={this.state.movieSearch} />
