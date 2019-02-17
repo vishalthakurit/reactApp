@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FormContainer from "./FormContainer";
 
 class Contactus extends Component {
 
@@ -25,6 +26,10 @@ class Contactus extends Component {
       <div className="contact-us-page">
         <h1>Welcome to Contact us Page !!</h1>
         <p>{this.props.match.params.username} Age is : <b>{requiredUser.age}</b> and weight is : <b>{requiredUser.weight}</b></p>
+        <div className="col-md-6">
+            <h3> Contact Us </h3>
+            <FormContainer />
+        </div>
       </div>
     );
   }

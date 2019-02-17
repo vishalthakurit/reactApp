@@ -1,10 +1,28 @@
+a:hover {
+    color: #333 !important;
+    text-decoration: none !important;
+}
+
 .movies_list div.movies_section{
     width: 50%;
     display: inline-flex;
+    padding-bottom: 20px;
 }
 
 .movies_list img.movie_image{
-    height: 500px;
+    cursor: pointer;
+    height: 300px;
+    width: 100%;
+    max-width: 220px;
+    -webkit-box-shadow: 8px 8px 6px -6px black;
+	   -moz-box-shadow: 8px 8px 6px -6px black;
+	        box-shadow: 8px 8px 6px -6px black;
+}
+
+img.movie_image:hover {
+    -webkit-box-shadow: 8px 8px 6px -6px #007C57;
+	   -moz-box-shadow: 8px 8px 6px -6px #007C57;
+	        box-shadow: 8px 8px 6px -6px #007C57;
 }
 
 .movies{
@@ -12,16 +30,93 @@
 }
 
 .movie_content {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+    width: 70%;
 }
 
-.movies_list span.total_vote
-{
-    float: right;
+.movie_title {
+    cursor: pointer;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+	   -moz-box-shadow: 0 8px 6px -6px black;
+            box-shadow: 0 8px 6px -6px black;
+    padding-bottom: 5px;    
 }
 
 .movie_overview{
     color: #84807F;
     text-align: justify;
+    margin-bottom: 10px !important;
+}
+
+.movie_hover {
+    text-decoration: none;
+    color: #333;
+}
+
+.avg_vote {
+    display: block;
+}
+
+.mv_popup_hide {
+    display: none;
+}
+
+.mv_popup_show {
+    display: show;
+    height: auto;
+    width: 900px;
+    position: fixed;
+    z-index: 2;
+    top: 15%;
+    font-size: 18px;
+    padding: 25px;
+    overflow-y: auto;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 0%);
+    background: antiquewhite;
+    -moz-box-shadow:    inset 0 0 10px #000000;
+    -webkit-box-shadow: inset 0 0 10px #000000;
+    box-shadow:         inset 0 0 10px #000000;
+}
+
+.mv_popup_img {
+    width: 30%;
+    float: left;
+    padding-top: 5px;
+}
+
+.mv_popup_content {
+    width: 70%;
+    float: right;
+    padding-top: 5px;
+}
+
+.popupCloseButton {
+    background-color: #fff;
+    border: 3px solid #999;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 25px;
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+.popupCloseButton:hover {
+    background-color: #ccc;
+}
+
+.movie_popup .movie_title, .movie_popup .movie_image {
+    cursor: default;
+}
+
+.movie_popup p {
+    margin-bottom: 0px;
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import IosSearch from 'react-ionicons/lib/IosSearch';
-import {searchMovies} from '../store/action/searchmovies';
+import '../css/SearchBar.css';
 
 class SearchField extends Component
 {
@@ -11,21 +11,12 @@ class SearchField extends Component
         }
     }
 
-    handleSearch(ev){
-        this.setState({searchInputValue : ev.target.value});
-    }
-
-    getMoviesResult(ev) {
-        var searchText = this.state.searchInputValue;
-        searchMovies(searchText);
-    }
-
     render() {
         return(
-            <div>
-                <input type="text" className={this.props.class} placeholder={this.props.placeholder} value={this.state.searchInputValue} onChange={this.handleSearch.bind(this)} />
-                <span className="search_icon">
-                    <IosSearch onClick={this.getMoviesResult.bind(this)} fontSize="25px" color="#43853d" />
+            <div className="parent_search_box">
+                <input type="text" className={`form-control mr-sm-2 search_field ${this.props.class}`} placeholder={this.props.placeholder} value={this.state.searchInputValue} onChange={ev => this.setState({searchInputValue : ev.target.value})} />
+                <span className="search_icon" onClick={() => this.props.onSubmit(this.state.searchInputValue)}>
+                    <IosSearch fontSize="25px" color={this.props.iconColor} />
                 </span>
             </div>
         )

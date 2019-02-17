@@ -1,0 +1,24 @@
+.username_input_label {
+    width: 100%;
+}
+
+button.save_username {
+    margin: 5px auto;
+}
+
+.radio_section, .checkbox_section {
+    display: inline-flex;
+}
+
+.radio_section b, .checkbox_section b {
+    padding-right: 50px;
+}
+
+span.separator {
+    padding-left: 10px;
+    padding-right: 10px; 
+}
+
+#form_section label.title {
+    padding-right: 10px;
+}

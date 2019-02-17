@@ -28,7 +28,7 @@ body {
 #form_section {
   width: 48%;
   padding: 10px;
-  float: right;
+  /* float: right; */
   background: whitesmoke;
 }
 
@@ -55,16 +55,18 @@ body {
   color: #333;
 }
 
-div.search_bar {
-  position: absolute;
-  right: 10px;
+.black_background {
+  display: none;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  opacity: 0.3;
+  background-color: #000000;
+  left: 0;
+  position: fixed;
+  top: 0;
 }
 
-.search_movies {
-  width: 250px;
-}
-
-span.search_icon {
-  float: right;
-  cursor: pointer;
+.right {
+  float: right !important;
 }
