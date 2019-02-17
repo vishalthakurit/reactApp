@@ -2,6 +2,7 @@ import React from 'react';
 import {
     Router, Route, Link
 } from 'react-router-dom';
+import SearchField from './SearchBar';
 // import createBrowserHistory from 'history/createBrowserHistory';
 
 // **** 1st method Start ****
@@ -11,6 +12,8 @@ import Users from './Users';
 import CustomComponent from './Header';
 import Contactus from './Contactus';
 import browserHistory from './History';
+import ProfilePhotos from './Profile';
+import Movies from './Movies';
 
 // **** 1st method End ****
 
@@ -39,6 +42,15 @@ const CustomRoutes = () => (
                     <li>
                         <Link to="/users/react-developer">Users</Link>
                     </li>
+                    <li>
+                        <Link to="/ProfilePhotos/">Profile</Link>
+                    </li>
+                    <li>
+                        <Link to="/Movies/">Movies</Link>
+                    </li>
+                    <div className="search_bar">
+                        <SearchField class="search_movies" placeholder="seach movies..."/>
+                    </div>
                 </ul>
             </nav>
 
@@ -46,6 +58,8 @@ const CustomRoutes = () => (
             <Route path="/about/:company" component={About} />
             <Route path="/users/:profile" component={Users} />
             <Route path="/contact/:username" component={Contactus} />
+            <Route path="/ProfilePhotos/" component={ProfilePhotos} />
+            <Route path="/Movies/" exact component={Movies} />
         </div>
     </Router>
 

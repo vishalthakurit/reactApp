@@ -1,0 +1,12 @@
+.profile_details {
+    width: 33%;
+    display: inline-flex;
+}
+.profile_section{
+    padding: 10px;
+}
+.profile_title {
+    padding: 0px 10px;
+    width: 100%;
+    color: gray;
+}

@@ -54,3 +54,17 @@ body {
 .navebar_menu ul li a:hover {
   color: #333;
 }
+
+div.search_bar {
+  position: absolute;
+  right: 10px;
+}
+
+.search_movies {
+  width: 250px;
+}
+
+span.search_icon {
+  float: right;
+  cursor: pointer;
+}

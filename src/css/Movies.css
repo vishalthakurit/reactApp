@@ -1,0 +1,27 @@
+.movies_list div.movies_section{
+    width: 50%;
+    display: inline-flex;
+}
+
+.movies_list img.movie_image{
+    height: 500px;
+}
+
+.movies{
+    padding: 10px;
+}
+
+.movie_content {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.movies_list span.total_vote
+{
+    float: right;
+}
+
+.movie_overview{
+    color: #84807F;
+    text-align: justify;
+}
