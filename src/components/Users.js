@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {changeState} from '../store/action/action'
-import {
-  Link
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Users extends Component {
   

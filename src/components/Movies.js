@@ -54,7 +54,7 @@ class ShowMovies extends Component {
                                         <h2 className="movie_title movie_hover">{val.original_title}</h2>
                                         <p>Popularity : <strong>{val.popularity}</strong></p>
                                         <p>Release Date : <strong>{val.release_date}</strong></p>
-                                        <span className="avg_vote">Average Vote : <strong>{val.vote_average}</strong></span>
+                                        <span className="avg_vote">IMDB Rating : <strong className="imdb_rating">{val.vote_average}</strong></span>
                                         <span className="total_vote">Total Vote : <strong>{val.vote_count}</strong></span>
                                         <p>Language : <strong>{val.original_language}</strong></p>
                                     </div>
@@ -131,7 +131,7 @@ class ShowMoviesPopup extends Component
                     {this.props.mvPopularity ? <span>Popularity : <strong>{this.props.mvPopularity}</strong></span> : ''}                    
                     <span className="right">Release Date : <strong>{this.props.mvReleaseDate}</strong></span>
                     {this.props.mvCountry ? <p>Country : <strong>{this.props.mvCountry}</strong></p> : ''}
-                    <span className="avg_vote">IMDB Rating : <strong>{this.props.mvAvgVote}</strong></span>
+                    <span className="avg_vote">IMDB Rating : <strong className="imdb_rating">{this.props.mvAvgVote}</strong></span>
                     <span className="total_vote right">Total Vote : <strong>{this.props.mvTotalVote}</strong></span>
                     <p>Language : <strong>{this.props.mvlanguage}</strong></p>                    
                     {this.props.mvDirector ? <p>Director : <strong>{this.props.mvDirector}</strong></p> : ''}
