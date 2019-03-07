@@ -19,6 +19,7 @@ class FormContainer extends Component {
         skills: [],
         about: ""
       },
+      todos: [],
 
       genderOptions: ["Male", "Female", "Others"],
       skillOptions: ["Programming", "Development", "Design", "Testing"]
@@ -108,7 +109,13 @@ class FormContainer extends Component {
   handleFormSubmit(e) {
     e.preventDefault();
     let userData = this.state.newUser;
-    console.log('Final Data => ', userData);
+    let allTodoData = this.state.todos;
+    allTodoData.push(userData);
+    this.setState({
+      todos: allTodoData
+    })
+    console.log('Final TODO Data ==> ', this.state.todos);
+    this.handleClearForm(e);
 
     // fetch("http://example.com", {
     //   method: "POST",
@@ -138,67 +145,80 @@ class FormContainer extends Component {
   }
 
   render() {
+    var finalTodos = this.state.todos;
     return (
-      <form className="container-fluid" onSubmit={this.handleFormSubmit}>
-        <Input
-          inputType={"text"}
-          title={"Full Name"}
-          name={"name"}
-          value={this.state.newUser.name}
-          placeholder={"Enter your name"}
-          handleChange={this.handleInput}
-        />{" "}
-        {/* Name of the user */}
-        <Input
-          inputType={"number"}
-          name={"age"}
-          title={"Age"}
-          value={this.state.newUser.age}
-          placeholder={"Enter your age"}
-          handleChange={this.handleAge}
-        />{" "}
-        {/* Age */}
-        <Select
-          title={"Gender"}
-          name={"gender"}
-          options={this.state.genderOptions}
-          value={this.state.newUser.gender}
-          placeholder={"Select Gender"}
-          handleChange={this.handleInput}
-        />{" "}
-        {/* Age Selection */}
-        <CheckBox
-          title={"Skills"}
-          name={"skills"}
-          options={this.state.skillOptions}
-          selectedOptions={this.state.newUser.skills}
-          handleChange={this.handleCheckBox}
-        />{" "}
-        {/* Skill */}
-        <TextArea
-          title={"About you."}
-          rows={10}
-          value={this.state.newUser.about}
-          name={"currentPetInfo"}
-          handleChange={this.handleTextArea}
-          placeholder={"Describe your past experience and skills"}
-        />
-        {/* About you */}
-        <Button
-          action={this.handleFormSubmit}
-          type={"primary"}
-          title={"Submit"}
-          style={buttonStyle}
-        />{" "}
-        {/*Submit */}
-        <Button
-          action={this.handleClearForm}
-          type={"secondary"}
-          title={"Clear"}
-          style={buttonStyle}
-        />{" "}
-        {/* Clear the form */}
-      </form>
+      <react-fragment>
+        <form className="form_container" onSubmit={this.handleFormSubmit}>
+          <Input
+            inputType={"text"}
+            title={"Full Name"}
+            name={"name"}
+            value={this.state.newUser.name}
+            placeholder={"Enter your name"}
+            handleChange={this.handleInput}
+          />{" "}
+          {/* Name of the user */}
+          <Input
+            inputType={"number"}
+            name={"age"}
+            title={"Age"}
+            value={this.state.newUser.age}
+            placeholder={"Enter your age"}
+            handleChange={this.handleAge}
+          />{" "}
+          {/* Age */}
+          <Select
+            title={"Gender"}
+            name={"gender"}
+            options={this.state.genderOptions}
+            value={this.state.newUser.gender}
+            placeholder={"Select Gender"}
+            handleChange={this.handleInput}
+          />{" "}
+          {/* Age Selection */}
+          <CheckBox
+            title={"Skills"}
+            name={"skills"}
+            options={this.state.skillOptions}
+            selectedOptions={this.state.newUser.skills}
+            handleChange={this.handleCheckBox}
+          />{" "}
+          {/* Skill */}
+          <TextArea
+            title={"About you."}
+            rows={10}
+            value={this.state.newUser.about}
+            name={"currentPetInfo"}
+            handleChange={this.handleTextArea}
+            placeholder={"Describe your past experience and skills"}
+          />
+          {/* About you */}
+          <Button
+            action={this.handleFormSubmit}
+            type={"primary"}
+            title={"Submit"}
+            style={buttonStyle}
+          />{" "}
+          {/*Submit */}
+          <Button
+            action={this.handleClearForm}
+            type={"secondary"}
+            title={"Clear"}
+            style={buttonStyle}
+          />{" "}
+          {/* Clear the form */}
+        </form>
+        <pre className="todo_view">
+          {finalTodos.map((data, key) => 
+            <ul key={key} className="todo_list">
+              <li><label className="titles">Name :</label>{data.name}</li>
+              <li><label className="titles">Age :</label>{data.age}</li>
+              <li><label className="titles">Gender :</label>{data.gender}</li>
+              <li><label className="titles">Discription :</label>{data.about}</li>
+            </ul>  
+          )}
+        </pre>
+      </react-fragment>
     );
   }
 }

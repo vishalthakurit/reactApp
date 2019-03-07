@@ -94,8 +94,7 @@ img.movie_image:hover {
 }
 
 .popupCloseButton {
-    background-color: #fff;
-    border: 3px solid #999;
+    background-color: #999;
     border-radius: 50px;
     cursor: pointer;
     display: inline-block;
@@ -118,5 +117,17 @@ img.movie_image:hover {
 }
 
 .movie_popup p {
+    margin-bottom: 0px;
+}
+
+.imdb_rating {
+    padding-right: .6em;
+    padding-left: .6em;
+    border-radius: 10rem;
+    background-color: #007bff;
+    color: #fff;
+}
+
+.movies_section p {
     margin-bottom: 0px;
 }
