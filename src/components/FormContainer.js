@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import MdRemoveCircle from 'react-ionicons/lib/MdRemoveCircle';
+import MdEdit from 'react-ionicons/lib/MdCreate';
+import '../css/Todo.css'; 
 
 /* Import Components */
 import CheckBox from "../components/CheckBox";
@@ -22,7 +25,7 @@ class FormContainer extends Component {
       todos: [],
 
       genderOptions: ["Male", "Female", "Others"],
-      skillOptions: ["Programming", "Development", "Design", "Testing"]
+      skillOptions: ["Programming", "Development", "Designing", "Testing"]
     };
     this.handleTextArea = this.handleTextArea.bind(this);
     this.handleAge = this.handleAge.bind(this);
@@ -144,6 +147,25 @@ class FormContainer extends Component {
     });
   }
 
+  removeTodo(key) {
+    var todoList = this.state.todos;
+    todoList.splice(key, 1);
+    this.setState({todos : todoList});
+  }
+
+  editTodo(key) {
+    var todoList = this.state.todos;
+    console.log(todoList[key]['name']);
+    this.setState(
+      prevState => ({
+        newUser : {
+          ...prevState.newUser,
+          name : 'vvvvvv'
+        }
+      })
+    );
+  }
+
   render() {
     var finalTodos = this.state.todos;
     return (
@@ -211,6 +233,14 @@ class FormContainer extends Component {
         <pre className="todo_view">
           {finalTodos.map((data, key) => 
             <ul key={key} className="todo_list">
+              <li>
+                <span className="remove_todo" onClick={() => this.removeTodo(key)}>
+                  <MdRemoveCircle fontSize="25px" />
+                </span>
+                <span className="edit_todo" onClick={() => this.editTodo(key)}>
+                  <MdEdit fontSize="25px" />
+                </span>
+              </li>
               <li><label className="titles">Name :</label>{data.name}</li>
               <li><label className="titles">Age :</label>{data.age}</li>
               <li><label className="titles">Gender :</label>{data.gender}</li>
