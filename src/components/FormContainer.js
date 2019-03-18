@@ -111,13 +111,18 @@ class FormContainer extends Component {
 
   handleFormSubmit(e) {
     e.preventDefault();
+    var index = this.state.editIndex;
     let userData = this.state.newUser;
     let allTodoData = this.state.todos;
-    allTodoData.push(userData);
+    if(allTodoData[index]){
+      allTodoData[index] = userData;
+    } else {
+      allTodoData.push(userData);
+    }
     this.setState({
       todos: allTodoData
     })
-    console.log('Final TODO Data ==> ', this.state.todos);
+    // console.log('Final TODO Data ==> ', this.state.todos);
     this.handleClearForm(e);
 
     // fetch("http://example.com", {
@@ -155,13 +160,17 @@ class FormContainer extends Component {
 
   editTodo(key) {
     var todoList = this.state.todos;
-    console.log(todoList[key]['name']);
     this.setState(
       prevState => ({
         newUser : {
           ...prevState.newUser,
-          name : 'vvvvvv'
-        }
+          name : todoList[key]['name'],
+          age : todoList[key]['age'],
+          gender : todoList[key]['gender'],
+          skills : todoList[key]['skills'],
+          about : todoList[key]['about']
+        },
+        editIndex : key
       })
     );
   }
