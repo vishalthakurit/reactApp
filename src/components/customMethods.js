@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Methods extends Component
 {
     myFacebookId(){
-        return "https://www.facebook.com/vishal.rajput.3591267";
+        return "https://www.facebook.com/";
     }
 
     facebookUserName(){
