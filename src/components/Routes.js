@@ -69,7 +69,7 @@ class CustomRoutes extends Component
                                 <Link to="/">Home</Link>
                             </li>
                             <li>
-                                <Link to="/about/Excellence-Technology">About Us</Link>
+                                <Link to="/about/Webkull">About Us</Link>
                             </li>
                             <li>
                                 <Link to="/users/react-developer">Users</Link>

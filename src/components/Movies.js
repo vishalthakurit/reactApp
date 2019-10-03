@@ -232,6 +232,7 @@ class Movies extends Component
            <React.Fragment>
                 <SearchField class="search_movies" placeholder="Seach Movies / Series ..." onSubmit={recieveData => this.getSearch(recieveData)} onChange={ev => this.setState({searchText : ev.target.value})} iconColor="#333" />
                 <div className='movies'>
+                    <h2>This Data is coming from the LIVE API. You can search the Movies/Series also.</h2>
                     <p>Total Movies are <strong>{(this.state.movieSearch) ? totalResults : total_results}</strong></p>
                     <ShowMovies movies={searchData} bySearch={this.state.movieSearch} />
                 </div>
